@@ -1,0 +1,76 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2314c417",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "SEED_NUM = 4   # change if your last digit is different\n",
+    "STUDENT_MAJOR = \"BSME\"\n",
+    "FAVORITE_ARTIST = \"LANA DEL REY\"\n",
+    "LOCAL_HAZARD = \"FLOOD\"\n",
+    "\n",
+    "CONTROL_NUM = max(3, SEED_NUM)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f090c016",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "EXERCISE 1\n",
+    "\n",
+    "from collections import defaultdict, Counter\n",
+    "\n",
+    "stream = [\n",
+    "    (\"TUP Manila\", \"BSECE\"),\n",
+    "    (\"TUP Taguig\", f\"BSME_v{CONTROL_NUM}\"),\n",
+    "    (\"TUP Manila\", f\"BSME_v{CONTROL_NUM}\"),\n",
+    "    (\"TUP Manila\", \"BSECE\"),\n",
+    "    (\"TUP Visayas\", STUDENT_MAJOR),\n",
+    "    (\"TUP Taguig\", \"BSECE\"),\n",
+    "    (\"TUP Manila\", \"BSECE\")\n",
+    "]\n",
+    "\n",
+    "# Add (CONTROL_NUM + 3) custom entries\n",
+    "for i in range(CONTROL_NUM + 3):\n",
+    "    stream.append((\"TUP Manila\", STUDENT_MAJOR))\n",
+    "\n",
+    "# Aggregation\n",
+    "campus_data = defaultdict(list)\n",
+    "for campus, program in stream:\n",
+    "    campus_data[campus].append(program)\n",
+    "\n",
+    "# Frequency analysis\n",
+    "manila_counter = Counter(campus_data[\"TUP Manila\"])\n",
+    "top_program, frequency = manila_counter.most_common(1)[0]\n",
+    "\n",
+    "print(\"CONTROL_NUM:\", CONTROL_NUM)\n",
+    "print(\"STUDENT_MAJOR:\", STUDENT_MAJOR)\n",
+    "print(\"Expanded Stream Length:\", len(stream))\n",
+    "print(\"Total Applications for TUP Manila:\", len(campus_data[\"TUP Manila\"]))\n",
+    "print(\"Top Requested Program at TUP Manila:\", top_program)\n",
+    "print(\"Exact Frequency:\", frequency)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0d1e7b11",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "language_info": {
+   "name": "python"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
